@@ -28,6 +28,16 @@ $userPassword = $currentUserName['userpassword'];
 
 $listArticles = pg_query($dbConn, "SELECT id, itemname, itemdescription, itemviews, sellerid, itemprice, itemsize, picturename FROM public.items ORDER BY id");
 
+// Checkout Query
+
+if(isset($_GET['artid'])) {
+$artid = $_GET['artid'];
+$checkoutArtikel = pg_query($dbConn, "SELECT id, itemname, itemdescription, itemviews, sellerid, itemprice, itemsize, picturename FROM public.items WHERE id = $artid ORDER BY id");
+
+  $artInfo = pg_fetch_assoc($checkoutArtikel);
+
+} else {}
+
 // Anzahl an Artikeln
 
 $alleArtikelQuery = pg_query($dbConn, "SELECT * FROM public.items");

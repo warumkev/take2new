@@ -79,10 +79,10 @@ include('./includes/connect.php');
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Kaufen</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Kontakt</button>
+                    <a href="buy.php?artid=<?php echo $id; ?>" class="btn btn-sm btn-outline-secondary">Kaufen</a>
+                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Kontakt</button> -->
                   </div>
-                  <small class="text-muted">9 mins</small>
+                  <small class="text-muted">Available</small>
                 </div>
               </div>
             </div>
