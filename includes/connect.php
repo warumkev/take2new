@@ -6,7 +6,7 @@ $host = "localhost";
 $port = "5432";
 $db = "take2new";
 $user = "postgres";
-$pw = "IchbinKevin03.";
+$pw = ""; // Enter password
 $connStr = "host=$host port=$port dbname=$db user=$user password=$pw";
 
 $dbConn = pg_connect($connStr);
