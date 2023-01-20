@@ -122,6 +122,13 @@ if (isset($_POST["register"])) {
   } else {
     $_SESSION['loggedin'] = True;
     pg_query($dbConn, "INSERT INTO public.sellers(id, username, userpassword) VALUES (DEFAULT, '$username', '$password')");
+    
+    $result = pg_query($dbConn, "SELECT id FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
+
+    $id = pg_fetch_assoc($result);
+
+    $_SESSION['userid'] = $id['id'];
+
     $success = True;
   }
 }
