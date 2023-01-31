@@ -75,7 +75,8 @@ ALTER SEQUENCE public.items_id_seq OWNED BY public.items.id;
 CREATE TABLE public.sellers (
     id integer NOT NULL,
     username text NOT NULL,
-    userpassword text NOT NULL
+    userpassword text NOT NULL,
+    admin bool NOT NULL
 );
 
 
@@ -127,10 +128,10 @@ ALTER TABLE ONLY public.sellers ALTER COLUMN id SET DEFAULT nextval('public.sell
 -- Data for Name: sellers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.sellers VALUES (1, 'Elvis', '81dc9bdb52d04dc20036dbd8313ed055');
-INSERT INTO public.sellers VALUES (2, 'Lara', '81dc9bdb52d04dc20036dbd8313ed055');
-INSERT INTO public.sellers VALUES (3, 'Mika', '81dc9bdb52d04dc20036dbd8313ed055');
-INSERT INTO public.sellers VALUES (4, 'Silas', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO public.sellers VALUES (1, 'Elvis', '81dc9bdb52d04dc20036dbd8313ed055', true);
+INSERT INTO public.sellers VALUES (2, 'Lara', '81dc9bdb52d04dc20036dbd8313ed055', true);
+INSERT INTO public.sellers VALUES (3, 'Mika', '81dc9bdb52d04dc20036dbd8313ed055', true);
+INSERT INTO public.sellers VALUES (4, 'Silas', '81dc9bdb52d04dc20036dbd8313ed055', true);
 
 
 --

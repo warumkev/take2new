@@ -31,8 +31,8 @@ include('./includes/connect.php');
 
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
       <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold">Wir sind die Spezialisten im Bereich der Second Hand Branche.</h3>
-        <p class="text-muted">Im Gegensatz zur Konkurenz setzen wir alles auf Nachahltigkeit. Unser hauseigener
+        <h3 class="fw-bold">Wir sind die Spezialisten im Bereich der Secondhand Branche.</h3>
+        <p class="text-muted">Im Gegensatz zur Konkurenz setzen wir alles auf Nachhaltigkeit. Unser hauseigener
           Lieferdienst wickelt Lieferungen schnell & problemlos ab und liefert im besten Fall schon am nächsten Tag zu
           dir nach Hause.</p>
         <a href="about.php" class="btn btn-dark btn-lg">Über uns</a>
@@ -69,8 +69,8 @@ include('./includes/connect.php');
             </svg>
           </div>
           <h4 class="fw-semibold mb-0"><span class="text-dark">Unser Beitrag</span></h4>
-          <p class="text-muted">Wir legen großen wert auf die Umwelt. Daher pflanzen wir bei jedem Verkauf eines
-            Artikels einen Baum, um dem Klimawandel entgegen zu wirken.</p>
+          <p class="text-muted">Wir legen großen Wert auf die Umwelt. Daher pflanzen wir bei jedem Verkauf eines
+            Artikels einen Baum, um dem Klimawandel entgegenzuwirken.</p>
         </div>
 
         <div class="d-flex flex-column gap-2">
@@ -83,7 +83,7 @@ include('./includes/connect.php');
           <h4 class="fw-semibold mb-0"><span class="text-warning">Probleme?</span></h4>
           <p class="text-muted">Bei Problemen mit <span class="text-dark">take</span><span
               class="text-danger">2</span><span class="text-dark">new</span>, bitte melde dich bei unserem Support. Wir
-            kommen schnelstmöglich darauf zurück.</p>
+            kommen schnellstmöglich darauf zurück.</p>
         </div>
       </div>
     </div>

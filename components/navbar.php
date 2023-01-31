@@ -24,6 +24,11 @@
           <a class="nav-link active" href="login.php">Anmelden</a>
         </li>
         <?php } else { ?>
+            <?php if (isset($_SESSION['admin'])) { ?>
+              <li class="nav-item">
+                <a class="nav-link active" href="users.php">Benutzer</a>
+              </li>
+            <?php } ?>
         <li class="nav-item">
           <a class="nav-link active" href="profile.php">Mein Profil</a>
         </li>

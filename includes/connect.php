@@ -2,68 +2,67 @@
 
 // Datenbankverbindung aufbauen
 
-$host = "localhost";
+$host = "localhost"; //$_ENV['POSTGRES_HOST'];
 $port = "5432";
 $db = "take2new";
 $user = "postgres";
-$pw = "IchbinKevin03.";
+$pw = "IchbinKevin03."; //"Start#123";
 $connStr = "host=$host port=$port dbname=$db user=$user password=$pw";
 
 $dbConn = pg_connect($connStr);
 
 if (!$dbConn) {
-  echo "Ein Fehler ist aufgetreten.\n";
-  exit;
+    echo "Ein Fehler ist aufgetreten.\n";
+    exit;
 }
 
 // Nutzername abrufen
 
-if(isset($_SESSION['loggedin'])){
-$userNameId = $_SESSION['userid'];
-$getUserName = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = $userNameId");
-$currentUserName = pg_fetch_assoc($getUserName);
-$name = $currentUserName['username'];
-$userPassword = $currentUserName['userpassword'];
+if (isset($_SESSION['loggedin'])) {
+    $userNameId = $_SESSION['userid'];
+    $getUserName = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = $userNameId");
+    $currentUserName = pg_fetch_assoc($getUserName);
+    $name = $currentUserName['username'];
+    $userPassword = $currentUserName['userpassword'];
 }
 // Artikel abrufen
 
 $listArticles = pg_query($dbConn, "SELECT * FROM public.items ORDER BY id");
 
-// Suchfunktion 
+// Suchfunktion
 
 
+if (isset($_GET['search'])) {
 
-if(isset($_GET['search'])) {
-
-  $query = $_GET['search'];
-  $listArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE itemname LIKE '%$query%' ORDER BY id");
+    $query = $_GET['search'];
+    $listArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE itemname LIKE '%$query%' ORDER BY id");
 
 
 }
 
 // Checkout
 
-if(isset($_GET['artid'])) {
-$artid = $_GET['artid'];
-$checkoutArtikel = pg_query($dbConn, "SELECT * FROM public.items WHERE id = $artid ORDER BY id");
+if (isset($_GET['artid'])) {
+    $artid = $_GET['artid'];
+    $checkoutArtikel = pg_query($dbConn, "SELECT * FROM public.items WHERE id = $artid ORDER BY id");
 
-  $artInfo = pg_fetch_assoc($checkoutArtikel);
+    $artInfo = pg_fetch_assoc($checkoutArtikel);
 
 } else {}
 
 // Bestellung aufgeben
 
 if (isset($_POST["order"])) {
-  $firstName = $_POST['firstName'];
-  $lastName = $_POST['lastName'];
-  $email = $_POST['email'];
-  $address = $_POST['address'];
-  $plz = $_POST['plz'];
-  $art = $artInfo['id'];
-  $artQty = $artInfo['qty'];
-  $artPrice = $artInfo['itemprice'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $plz = $_POST['plz'];
+    $art = $artInfo['id'];
+    $artQty = $artInfo['qty'];
+    $artPrice = $artInfo['itemprice'];
 
-  pg_query($dbConn, "INSERT INTO public.orders(orderid, firstname, lastname, email, address, plz, itemid, price) VALUES (DEFAULT, '$firstName', '$lastName', '$email', '$address', '$plz', $artid, '$artPrice')");
+    pg_query($dbConn, "INSERT INTO public.orders(orderid, firstname, lastname, email, address, plz, itemid, price) VALUES (DEFAULT, '$firstName', '$lastName', '$email', '$address', '$plz', $artid, '$artPrice')");
 
 }
 
@@ -77,58 +76,58 @@ $alleArtikel = pg_num_rows($alleArtikelQuery);
 
 if (isset($_POST["sell"])) {
 
-  $currentDirectory = getcwd();
-  $uploadDirectory = "/itemimg/";
+    $currentDirectory = getcwd();
+    $uploadDirectory = "/itemimg/";
 
-  $errors = [];
+    $errors = [];
 
-  $fileExtensionsAllowed = ['jpeg', 'jpg', 'png'];
+    $fileExtensionsAllowed = ['jpeg', 'jpg', 'png'];
 
-  $fileName = $_FILES['pictureName']['name'];
-  $fileSize = $_FILES['pictureName']['size'];
-  $fileTmpName = $_FILES['pictureName']['tmp_name'];
-  $fileType = $_FILES['pictureName']['type'];
+    $fileName = $_FILES['pictureName']['name'];
+    $fileSize = $_FILES['pictureName']['size'];
+    $fileTmpName = $_FILES['pictureName']['tmp_name'];
+    $fileType = $_FILES['pictureName']['type'];
 
-  $tmp = explode('.', $fileName);
+    $tmp = explode('.', $fileName);
 
-  $fileExtension = strtolower(end($tmp));
+    $fileExtension = strtolower(end($tmp));
 
-  $uploadPath = $currentDirectory . $uploadDirectory . basename($fileName);
+    $uploadPath = $currentDirectory . $uploadDirectory . basename($fileName);
 
-  if (!in_array($fileExtension, $fileExtensionsAllowed)) {
-    $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
-  }
+    if (!in_array($fileExtension, $fileExtensionsAllowed)) {
+        $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
+    }
 
-  if ($fileSize > 4000000) {
-    $errors[] = "File exceeds maximum size (4MB)";
-  }
+    if ($fileSize > 4000000) {
+        $errors[] = "File exceeds maximum size (4MB)";
+    }
 
-  if (empty($errors)) {
-    $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
-  $name = $_POST['name'];
-  $price = $_POST['price'];
-  $description = $_POST['description'];
-  $size = $_POST['size'];
-  $sellerid = $_SESSION['userid'];
-  $description = nl2br($description);
-  $description = stripslashes($description);
-
-
-  pg_query($dbConn, "INSERT INTO public.items(id, itemname, itemdescription, itemviews, itemprice, sellerid, itemsize, picturename) VALUES (DEFAULT, '$name', '$description', DEFAULT, $price, $sellerid, '$size', '$fileName')");
-
-  header('Location: items.php');
+    if (empty($errors)) {
+        $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+        $name = $_POST['name'];
+        $price = $_POST['price'];
+        $description = $_POST['description'];
+        $size = $_POST['size'];
+        $sellerid = $_SESSION['userid'];
+        $description = nl2br($description);
+        $description = stripslashes($description);
 
 
-    if ($didUpload) {
-      $uploadSuccess = True;
+        pg_query($dbConn, "INSERT INTO public.items(id, itemname, itemdescription, itemviews, itemprice, sellerid, itemsize, picturename) VALUES (DEFAULT, '$name', '$description', DEFAULT, $price, $sellerid, '$size', '$fileName')");
+
+        header('Location: items.php');
+
+
+        if ($didUpload) {
+            $uploadSuccess = True;
+        } else {
+            echo "An error occurred. Please contact the administrator.";
+        }
     } else {
-      echo "An error occurred. Please contact the administrator.";
+        foreach ($errors as $error) {
+            echo $error . " These are the errors" . "\n";
+        }
     }
-  } else {
-    foreach ($errors as $error) {
-      echo $error . " These are the errors" . "\n";
-    }
-  }
 
 }
 
@@ -140,27 +139,27 @@ $success = False;
 
 if (isset($_POST["register"])) {
 
-  $username = $_POST['username'];
-  $password = md5($_POST['password']);
-  $usernameFree = pg_query($dbConn, "SELECT username FROM public.sellers WHERE username LIKE '$username'");
-  $usernameExists = pg_num_rows($usernameFree);
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+    $usernameFree = pg_query($dbConn, "SELECT username FROM public.sellers WHERE username LIKE '$username'");
+    $usernameExists = pg_num_rows($usernameFree);
 
-  if (!isset($username) || trim($username) == '' || !isset($password) || trim($password) == '') {
-    $invalid = True;
-  } else if ($usernameExists > 0) {
-    $taken = True;
-  } else {
-    $_SESSION['loggedin'] = True;
-    pg_query($dbConn, "INSERT INTO public.sellers(id, username, userpassword) VALUES (DEFAULT, '$username', '$password')");
-    
-    $result = pg_query($dbConn, "SELECT id FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
+    if (!isset($username) || trim($username) == '' || !isset($password) || trim($password) == '') {
+        $invalid = True;
+    } else if ($usernameExists > 0) {
+        $taken = True;
+    } else {
+        $_SESSION['loggedin'] = True;
+        pg_query($dbConn, "INSERT INTO public.sellers(id, username, userpassword) VALUES (DEFAULT, '$username', '$password')");
 
-    $id = pg_fetch_assoc($result);
+        $result = pg_query($dbConn, "SELECT id FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
 
-    $_SESSION['userid'] = $id['id'];
+        $id = pg_fetch_assoc($result);
 
-    $success = True;
-  }
+        $_SESSION['userid'] = $id['id'];
+
+        $success = True;
+    }
 }
 
 // Anmeldung
@@ -169,29 +168,36 @@ $wrong = False;
 
 if (isset($_POST["login"])) {
 
-  $username = $_POST['username'];
-  $password = md5($_POST['password']);
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
 
-  $checkData = pg_query($dbConn, "SELECT * FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
+    $checkData = pg_query($dbConn, "SELECT * FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
 
-  $login_check = pg_num_rows($checkData);
+    $login_check = pg_num_rows($checkData);
 
-  if ($login_check > 0) {
+    if ($login_check > 0) {
 
-    $result = pg_query($dbConn, "SELECT id FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
+        $result = pg_query($dbConn, "SELECT id FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
 
-    $id = pg_fetch_assoc($result);
+        $id = pg_fetch_assoc($result);
 
+        $result = pg_query($dbConn, "SELECT admin FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
 
-    $_SESSION['userid'] = $id['id'];
-    $_SESSION['loggedin'] = True;
-    header('Location: home.php');
+        $admin = pg_fetch_assoc($result);
 
-  } else {
+        if ($admin) {
+            $_SESSION['admin'] = True;
+        }
 
-    $wrong = True;
+        $_SESSION['userid'] = $id['id'];
+        $_SESSION['loggedin'] = True;
+        header('Location: home.php');
 
-  }
+    } else {
+
+        $wrong = True;
+
+    }
 
 }
 

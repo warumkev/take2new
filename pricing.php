@@ -76,7 +76,7 @@ include('./includes/connect.php');
               <li>Versicherung bis 450€</li>
               <li>Zeige deinen Artikel an der Spitze (10x/mo.)</li>
             </ul>
-            <a href="mailto:kevin.tamme@iu-study.org" type="button" class="w-100 btn btn-lg btn-success">Kontaktiere uns</a>
+            <a href="mailto:mail@iu-study.org" type="button" class="w-100 btn btn-lg btn-success">Kontaktiere uns</a>
           </div>
         </div>
       </div>
