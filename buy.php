@@ -38,11 +38,11 @@ include('./includes/connect.php');
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0"><?php echo $artInfo['itemname'];?></h6>
-              <small class="text-muted"><?php echo $artInfo['itemsize'];?></small>
+              <small class="text-muted">Größe <?php echo $artInfo['itemsize'];?></small>
             </div>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Total (EUR)</span>
+            <span>Summe (EUR)</span>
             <strong><?php echo $artInfo['itemprice']." €";?></strong>
           </li>
         </ul>
@@ -50,11 +50,11 @@ include('./includes/connect.php');
       </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Rechnungsadresse</h4>
-        <form class="needs-validation" novalidate="">
+        <form class="needs-validation" novalidate="" method="post">
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Vorname</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required="" control-id="ControlID-3">
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required="" control-id="ControlID-3">
               <div class="invalid-feedback">
                 Ein gültiger Vorname muss angegeben werden!
               </div>
@@ -62,7 +62,7 @@ include('./includes/connect.php');
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Nachname</label>
-              <input type="text" class="form-control" id="lastName" placeholder="" value="" required="" control-id="ControlID-4">
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required="" control-id="ControlID-4">
               <div class="invalid-feedback">
               Ein gültiger Nachname muss angegeben werden!
               </div>
@@ -70,7 +70,7 @@ include('./includes/connect.php');
 
             <div class="col-12">
               <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com" control-id="ControlID-6">
+              <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" control-id="ControlID-6">
               <div class="invalid-feedback">
               Bitte geben Sie eine gültige E-Mail-Adresse für Versand-Updates ein.
               </div>
@@ -78,7 +78,7 @@ include('./includes/connect.php');
 
             <div class="col-12">
               <label for="address" class="form-label">Adresse</label>
-              <input type="text" class="form-control" id="address" placeholder="Musterstraße 1" required="" control-id="ControlID-7">
+              <input type="text" class="form-control" id="address" name="address" placeholder="Musterstraße 1" required="" control-id="ControlID-7">
               <div class="invalid-feedback">
               Bitte geben Sie Ihre Versandadresse ein.
               </div>
@@ -86,7 +86,7 @@ include('./includes/connect.php');
 
             <div class="col-12">
               <label for="plz" class="form-label">PLZ / Stadt</label>
-              <input type="text" class="form-control" id="plz" placeholder="63123 / Musterstadt" control-id="ControlID-8">
+              <input type="text" class="form-control" id="plz" name="plz" placeholder="63123 / Musterstadt" control-id="ControlID-8">
             </div>
 
           <hr class="my-4">
@@ -95,14 +95,14 @@ include('./includes/connect.php');
 
           <div class="my-3">
             <div class="form-check">
-              <input id="credit" name="paymentMethod" type="radio" class="form-check-input border-dark bg-dark" checked="" required="" control-id="ControlID-14">
+              <input id="credit" name="credit" name="paymentMethod" type="radio" class="form-check-input border-dark bg-dark" checked="" required="" control-id="ControlID-14">
               <label class="form-check-label" for="bar">Barzahlung bei Lieferung</label>
             </div>
 </div>
 
           <hr class="my-4">
 
-          <a class="w-100 btn btn-outline-dark btn-lg" type="post" control-id="ControlID-20">Continue to checkout</a>
+          <button name="order" type="post" class="btn btn-dark">Bestellung aufgeben</button>
         </form>
       </div>
     </div>

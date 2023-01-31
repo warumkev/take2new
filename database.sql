@@ -121,31 +121,16 @@ ALTER TABLE ONLY public.items ALTER COLUMN id SET DEFAULT nextval('public.items_
 
 ALTER TABLE ONLY public.sellers ALTER COLUMN id SET DEFAULT nextval('public.sellers_id_seq'::regclass);
 
-
---
--- TOC entry 3329 (class 0 OID 49186)
--- Dependencies: 215
--- Data for Name: items; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO public.items VALUES (1, 'Air Force 1', 'Ein Paar gute Schuhe!', 0, 100, 1, '45 1/2', 'af1.png', 1);
-INSERT INTO public.items VALUES (2, '502 Levis Taper Jeans ', 'Eine schöne Hose', 0, 70, 1, '32/30', '502taperjeans.jpeg', 1);
-INSERT INTO public.items VALUES (3, 'Moncler Pullover', 'Ein Pullover auf Frankreichs Hauptstadt.', 0, 230, 1, 'XS', 'monclerpullover.jpeg', 1);
-INSERT INTO public.items VALUES (4, 'The North Face Daunenjacke', 'Diese Jacke hält garantiert warm!', 0, 200, 1, 'L', 'tnfjacke.jpg', 1);
-INSERT INTO public.items VALUES (5, 'Nike VaporMax', 'Gute Schuhe', 0, 120, 3, '45', 'vapormax.jpg', 1);
-INSERT INTO public.items VALUES (6, 'Elvis', 'Elvis stinkt.', 0, 10, 1, 'XXL', 'blank-meme-template-022-third-world-yo-mean-to-tell-me.png', 1);
-
-
 --
 -- TOC entry 3331 (class 0 OID 49195)
 -- Dependencies: 217
 -- Data for Name: sellers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.sellers VALUES (1, 'Kevin', '81dc9bdb52d04dc20036dbd8313ed055');
-INSERT INTO public.sellers VALUES (2, 'Elvis', '202cb962ac59075b964b07152d234b70');
-INSERT INTO public.sellers VALUES (3, 'Lara', '202cb962ac59075b964b07152d234b70');
-INSERT INTO public.sellers VALUES (4, 'elvis', '202cb962ac59075b964b07152d234b70');
+INSERT INTO public.sellers VALUES (1, 'Elvis', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO public.sellers VALUES (2, 'Lara', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO public.sellers VALUES (3, 'Mika', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO public.sellers VALUES (4, 'Silas', '81dc9bdb52d04dc20036dbd8313ed055');
 
 
 --

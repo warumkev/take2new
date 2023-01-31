@@ -17,6 +17,7 @@ if (!$dbConn) {
 }
 
 // Nutzername abrufen
+
 if(isset($_SESSION['loggedin'])){
 $userNameId = $_SESSION['userid'];
 $getUserName = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = $userNameId");
@@ -26,17 +27,45 @@ $userPassword = $currentUserName['userpassword'];
 }
 // Artikel abrufen
 
-$listArticles = pg_query($dbConn, "SELECT id, itemname, itemdescription, itemviews, sellerid, itemprice, itemsize, picturename FROM public.items ORDER BY id");
+$listArticles = pg_query($dbConn, "SELECT * FROM public.items ORDER BY id");
 
-// Checkout Query
+// Suchfunktion 
+
+
+
+if(isset($_GET['search'])) {
+
+  $query = $_GET['search'];
+  $listArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE itemname LIKE '%$query%' ORDER BY id");
+
+
+}
+
+// Checkout
 
 if(isset($_GET['artid'])) {
 $artid = $_GET['artid'];
-$checkoutArtikel = pg_query($dbConn, "SELECT id, itemname, itemdescription, itemviews, sellerid, itemprice, itemsize, picturename FROM public.items WHERE id = $artid ORDER BY id");
+$checkoutArtikel = pg_query($dbConn, "SELECT * FROM public.items WHERE id = $artid ORDER BY id");
 
   $artInfo = pg_fetch_assoc($checkoutArtikel);
 
 } else {}
+
+// Bestellung aufgeben
+
+if (isset($_POST["order"])) {
+  $firstName = $_POST['firstName'];
+  $lastName = $_POST['lastName'];
+  $email = $_POST['email'];
+  $address = $_POST['address'];
+  $plz = $_POST['plz'];
+  $art = $artInfo['id'];
+  $artQty = $artInfo['qty'];
+  $artPrice = $artInfo['itemprice'];
+
+  pg_query($dbConn, "INSERT INTO public.orders(orderid, firstname, lastname, email, address, plz, itemid, price) VALUES (DEFAULT, '$firstName', '$lastName', '$email', '$address', '$plz', $artid, '$artPrice')");
+
+}
 
 // Anzahl an Artikeln
 
@@ -104,6 +133,7 @@ if (isset($_POST["sell"])) {
 }
 
 // Registrierung
+
 $invalid = False;
 $taken = False;
 $success = False;

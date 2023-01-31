@@ -55,7 +55,8 @@ include('./includes/connect.php');
           $getSeller = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = '$sellerid'");
           $itemSeller = pg_fetch_assoc($getSeller);
           $seller = $itemSeller['username'];
-            $img = $row['picturename'];
+          $img = $row['picturename'];
+          $qty = $row['qty'];
 
         ?>
           <div class="col">
@@ -80,9 +81,8 @@ include('./includes/connect.php');
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a href="buy.php?artid=<?php echo $id; ?>" class="btn btn-sm btn-outline-secondary">Kaufen</a>
-                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Kontakt</button> -->
                   </div>
-                  <small class="text-muted">Available</small>
+                  <small class="text-muted"><?php echo $qty; ?> verfügbar</small>
                 </div>
               </div>
             </div>
@@ -91,7 +91,6 @@ include('./includes/connect.php');
         </div>
       </div>
     </div>
-
   </main>
 
   <?php include('./components/footer.php'); ?>

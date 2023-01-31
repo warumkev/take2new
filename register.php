@@ -47,7 +47,7 @@ include('./includes/connect.php');
                 <input type="text" class="form-control" placeholder="Nutzername" aria-label="Nutzername" name="username"
                     id="username">
                 <span class="input-group-text">-</span>
-                <input type="text" class="form-control" placeholder="Passwort" aria-label="Passwort" name="password"
+                <input type="password" class="form-control" placeholder="Passwort" aria-label="Passwort" name="password"
                     id="password">
                 <button name="register" type="post" class="btn btn-dark">Registrieren</button>
             </div>

@@ -35,8 +35,20 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <form role="search">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" control-id="ControlID-2">
+      <?php 
+
+      if (isset($_GET['searchBtn'])) {
+
+        $keyWord = $_GET['search'];
+      
+        header("Location: ./home.php?keyword=" . $keyWord);
+      
+      }
+
+      ?>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2 btn btn-outline-dark" type="search" placeholder="Artikel durchstöbern" name="search" aria-label="Search">
+        <input class="btn btn-outline-warning" type="submit" value="Suchen">
       </form>
     </div>
   </div>
