@@ -29,6 +29,8 @@ if (isset($_SESSION['loggedin'])) {
 
 $listArticles = pg_query($dbConn, "SELECT * FROM public.items ORDER BY id");
 
+$listUsers = pg_query($dbConn, "SELECT * FROM public.sellers ORDER BY id");
+
 // Suchfunktion
 
 
@@ -36,7 +38,6 @@ if (isset($_GET['search'])) {
 
     $query = $_GET['search'];
     $listArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE itemname LIKE '%$query%' ORDER BY id");
-
 
 }
 
@@ -48,7 +49,15 @@ if (isset($_GET['artid'])) {
 
     $artInfo = pg_fetch_assoc($checkoutArtikel);
 
-} else {}
+}
+
+if (isset($_GET['uid'])) {
+    $uid = $_GET['uid'];
+    $userDetails = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = $uid ORDER BY id");
+    $userArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE sellerid = $uid ORDER BY id");
+
+    $userInfo = pg_fetch_assoc($userDetails);
+}
 
 // Bestellung aufgeben
 
@@ -150,7 +159,7 @@ if (isset($_POST["register"])) {
         $taken = True;
     } else {
         $_SESSION['loggedin'] = True;
-        pg_query($dbConn, "INSERT INTO public.sellers(id, username, userpassword) VALUES (DEFAULT, '$username', '$password')");
+        pg_query($dbConn, "INSERT INTO public.sellers(id, username, userpassword, admin) VALUES (DEFAULT, '$username', '$password', False)");
 
         $result = pg_query($dbConn, "SELECT id FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
 
