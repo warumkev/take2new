@@ -16,8 +16,8 @@
 - Microsoft Windows 10
 
 ## Installation
-- Erstellen sie eine neue PostgreSQL Datenbank und führen den code aus der Datei `database.sql` aus.
 - Laden sie das Repository herunter und entpacken sie es in einen beliebigen Ordner.
+- Erstellen sie eine neue PostgreSQL Datenbank und führen den code aus der Datei `database.sql` aus.
 - Öffnen sie die Datei `DatabaseFactory.php` und ändern sie die Werte der Variablen `HOST`, `PORT`, `DBNAME`, `USER` und `PASSWORD` auf die Werte ihrer Datenbank.
 - Kopieren sie den Inhalt des Ordners `app` in den Ordner `htdocs` ihres Apache-Servers.
 - Öffnen sie die Datei 'php.ini' und aktivieren die pdo extension.
