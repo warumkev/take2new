@@ -18,7 +18,6 @@ include('./includes/connect.php');
 
   <?php include('./components/navbar.php'); ?>
 
-
   <main>
 
     <section class="py-5 text-center container">
@@ -32,7 +31,7 @@ include('./includes/connect.php');
             <button type="button" class="btn btn-dark position-relative">
               Aktuelles Sortiment
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                <?php echo $alleArtikel; ?>
+                <?php echo count((new BaseModel)->getAll('items')); ?>
               </span>
             </button>
           </p>
@@ -44,20 +43,15 @@ include('./includes/connect.php');
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-          <?php while ($row = pg_fetch_assoc($listArticles)) {
-
-          $name = $row['itemname'];
-          $id = $row['id'];
-          $description = $row['itemdescription'];
-          $price = $row['itemprice'];
-          $size = $row['itemsize'];
-          $sellerid = $row['sellerid'];
-          $getSeller = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = '$sellerid'");
-          $itemSeller = pg_fetch_assoc($getSeller);
-          $seller = $itemSeller['username'];
-          $img = $row['picturename'];
-          $qty = $row['qty'];
-
+          <?php foreach (((new BaseModel)->getAll('items')) as $row) {
+            $name = $row['itemname'];
+            $id = $row['id'];
+            $description = $row['itemdescription'];
+            $price = $row['itemprice'];
+            $size = $row['itemsize'];
+            $seller = (new BaseModel)->getOne('sellers', $row['sellerid'])['username'];
+            $img = $row['picturename'];
+            $qty = $row['qty'];
         ?>
           <div class="col">
             <div class="card shadow-sm">
@@ -94,7 +88,6 @@ include('./includes/connect.php');
   </main>
 
   <?php include('./components/footer.php'); ?>
-
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

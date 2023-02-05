@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include('./includes/connect.php');
 
 if(!$_SESSION['admin']) {
@@ -37,46 +38,39 @@ if(!$_SESSION['admin']) {
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-                <?php while ($row = pg_fetch_assoc($listUsers)) {
-
-                    $id = $row['id'];
-                    $username = $row['username'];
-                    $userpassword = $row['userpassword'];
-                    if ($row['admin']) {
-                        $admin = "Admin";
-                    } else {
-                        $admin = "Seller";
-                    }
-
-                    ?>
+                <?php foreach ((new BaseModel)->getAll('sellers') as $user) { ?>
                     <div class="col">
                         <div class="card shadow-sm">
                             <title>
-                                <?php echo $username; ?>
+                                <?php echo $user['username']; ?>
                             </title>
                             <rect width="100%" height="100%" fill="#55595c"></rect>
                             <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                                <br>&nbsp&nbsp&nbsp <span class="text-dark"><b><?php echo $username; ?></b></span>
+                                <br>&nbsp&nbsp&nbsp <span class="text-dark"><b><?php echo $user['username']; ?></b></span>
                             </text>
-                            </svg>
+
+                            <?php
+                            if ($user['admin']) {
+                                $rolle = "Admin";
+                            } else {
+                                $rolle = "Seller";
+                            }
+                            ?>
 
                             <div class="card-body">
                                 <p class="card-text">
-                                    <?php echo "ID: " . $id ?>
+                                    <?php echo "ID: " . $user['id']; ?>
                                 </p>
                                 <p class="card-text">
-                                    <?php echo "Passwordhash: " . $userpassword ?>
+                                    <?php echo "Passwort: " . $user['userpassword']; ?>
                                 </p>
                                 <p class="card-text">
-                                    <?php echo "Rolle: " . $admin ?>
+                                    <?php echo "Rolle: " . $rolle ?>
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="edit_user.php?uid=<?php echo $id; ?>"
-                                           class="btn btn-sm btn-outline-secondary">Bearbeiten</a>
-                                        <a href="delete_user.php?uid=<?php echo $id; ?>"
-                                           class="btn btn-sm btn-outline-secondary">Löschen</a>
+                                        <a href="edit_user.php?id=<?php echo $user['id']; ?>" class="btn btn-sm btn-outline-secondary">Bearbeiten</a>
+                                        <a href="delete_user.php?id=<?php echo $user['id']; ?>" class="btn btn-sm btn-outline-secondary">Löschen</a>
                                     </div>
                                 </div>
                             </div>

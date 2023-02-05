@@ -2,7 +2,7 @@
 session_start();
 include('./includes/connect.php');
 
-if(!$_SESSION['admin']) {
+if (!$_SESSION['admin']) {
     header('Location: home.php');
     exit;
 }
@@ -37,19 +37,24 @@ if(!$_SESSION['admin']) {
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-dark">Artikel</span>
+                    <span class="badge bg-dark rounded-pill"><?php echo count((new BaseModel)->allWhere('items', 'sellerid', $_GET['id'])) ?></span>
                 </h4>
                 <ul class="list-group mb-3">
 
-                    <?php while ($article = pg_fetch_assoc($userArticles)) { ?>
+                    <?php foreach ((new BaseModel)->allWhere('items', 'sellerid', $_GET['id']) as $article) { ?>
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
-                                <h6 class="my-0"><?php echo $article['itemname'] . " | " . $article['itemprice'] . "€"?></h6>
+                                <h6 class="my-0"><?php echo $article['itemname'] . " | " . $article['itemprice'] . "€" ?></h6>
                             </div>
                         </li>
                     <?php } ?>
                 </ul>
-
             </div>
+
+            <?php
+                $userInfo = (new BaseModel)->getOne('sellers', $_GET['id']);
+            ?>
+
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Details</h4>
                 <form class="needs-validation" novalidate="" method="post">
@@ -57,7 +62,7 @@ if(!$_SESSION['admin']) {
 
                         <div class="col-sm-6">
                             <label for="id" class="form-label">ID</label>
-                            <input type="number" class="form-control" id="id" name="id" placeholder=""
+                            <input type="text" class="form-control" id="id" name="id" placeholder=""
                                    value=<?php echo $userInfo['id']; ?> required="" control-id="ControlID-4">
                             <div class="invalid-feedback">
                                 Es muss eine gültige ID angegeben werden

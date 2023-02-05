@@ -1,66 +1,30 @@
 <?php
+include('./BaseModel.php');
 
-// Datenbankverbindung aufbauen
-
-$host = "localhost"; //$_ENV['POSTGRES_HOST'];
-$port = "5432";
-$db = "take2new";
-$user = "postgres";
-$pw = "IchbinKevin03."; //"Start#123";
-$connStr = "host=$host port=$port dbname=$db user=$user password=$pw";
-
-$dbConn = pg_connect($connStr);
-
-if (!$dbConn) {
-    echo "Ein Fehler ist aufgetreten.\n";
-    exit;
-}
 
 // Nutzername abrufen
-
 if (isset($_SESSION['loggedin'])) {
-    $userNameId = $_SESSION['userid'];
-    $getUserName = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = $userNameId");
-    $currentUserName = pg_fetch_assoc($getUserName);
-    $name = $currentUserName['username'];
-    $userPassword = $currentUserName['userpassword'];
+    $user = (new BaseModel)->getOne('sellers', $_SESSION['userid']);
+    $name = $user['username'];
+    $userPassword = $user['userpassword'];
 }
-// Artikel abrufen
 
-$listArticles = pg_query($dbConn, "SELECT * FROM public.items ORDER BY id");
-
-$listUsers = pg_query($dbConn, "SELECT * FROM public.sellers ORDER BY id");
 
 // Suchfunktion
-
-
 if (isset($_GET['search'])) {
-
     $query = $_GET['search'];
-    $listArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE itemname LIKE '%$query%' ORDER BY id");
-
+    $listArticles = (new BaseModel)->allWhere('items', 'itemname', $query);
 }
+
 
 // Checkout
-
 if (isset($_GET['artid'])) {
     $artid = $_GET['artid'];
-    $checkoutArtikel = pg_query($dbConn, "SELECT * FROM public.items WHERE id = $artid ORDER BY id");
-
-    $artInfo = pg_fetch_assoc($checkoutArtikel);
-
+    $artInfo = (new BaseModel)->getOne('items', $artid);
 }
 
-if (isset($_GET['uid'])) {
-    $uid = $_GET['uid'];
-    $userDetails = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = $uid ORDER BY id");
-    $userArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE sellerid = $uid ORDER BY id");
-
-    $userInfo = pg_fetch_assoc($userDetails);
-}
 
 // Bestellung aufgeben
-
 if (isset($_POST["order"])) {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
@@ -71,20 +35,21 @@ if (isset($_POST["order"])) {
     $artQty = $artInfo['qty'];
     $artPrice = $artInfo['itemprice'];
 
-    pg_query($dbConn, "INSERT INTO public.orders(orderid, firstname, lastname, email, address, plz, itemid, price) VALUES (DEFAULT, '$firstName', '$lastName', '$email', '$address', '$plz', $artid, '$artPrice')");
-
+    (new BaseModel)->create('orders', [
+        'id' => uniqid(),
+        'firstname' => $firstName,
+        'lastname' => $lastName,
+        'email' => $email,
+        'address' => $address,
+        'plz' => $plz,
+        'itemid' => $art,
+        'price' => $artPrice
+    ]);
 }
 
-// Anzahl an Artikeln
-
-$alleArtikelQuery = pg_query($dbConn, "SELECT * FROM public.items");
-
-$alleArtikel = pg_num_rows($alleArtikelQuery);
 
 // Artikel hochladen
-
 if (isset($_POST["sell"])) {
-
     $currentDirectory = getcwd();
     $uploadDirectory = "/itemimg/";
 
@@ -121,11 +86,18 @@ if (isset($_POST["sell"])) {
         $description = nl2br($description);
         $description = stripslashes($description);
 
-
-        pg_query($dbConn, "INSERT INTO public.items(id, itemname, itemdescription, itemviews, itemprice, sellerid, itemsize, picturename) VALUES (DEFAULT, '$name', '$description', DEFAULT, $price, $sellerid, '$size', '$fileName')");
+        (new BaseModel)->create('items', [
+            'id' => uniqid(),
+            'itemname' => $name,
+            'itemdescription' => $description,
+            'itemviews' => 0,
+            'itemprice' => $price,
+            'sellerid' => $sellerid,
+            'itemsize' => $size,
+            'picturename' => $fileName
+        ]);
 
         header('Location: items.php');
-
 
         if ($didUpload) {
             $uploadSuccess = True;
@@ -137,68 +109,48 @@ if (isset($_POST["sell"])) {
             echo $error . " These are the errors" . "\n";
         }
     }
-
 }
 
-// Registrierung
 
+// Registrierung
 $invalid = False;
 $taken = False;
 $success = False;
-
 if (isset($_POST["register"])) {
-
     $username = $_POST['username'];
     $password = md5($_POST['password']);
-    $usernameFree = pg_query($dbConn, "SELECT username FROM public.sellers WHERE username LIKE '$username'");
-    $usernameExists = pg_num_rows($usernameFree);
+
+    $usernameFree = (new BaseModel)->getByColumnValue("sellers", "username", $username);
 
     if (!isset($username) || trim($username) == '' || !isset($password) || trim($password) == '') {
         $invalid = True;
-    } else if ($usernameExists > 0) {
+    } else if ($usernameFree) {
         $taken = True;
     } else {
         $_SESSION['loggedin'] = True;
-        pg_query($dbConn, "INSERT INTO public.sellers(id, username, userpassword, admin) VALUES (DEFAULT, '$username', '$password', False)");
-
-        $result = pg_query($dbConn, "SELECT id FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
-
-        $id = pg_fetch_assoc($result);
-
-        $_SESSION['userid'] = $id['id'];
-
+        (new BaseModel)->create("sellers", ['id' => uniqid(), 'username' => $username, 'userpassword' => $password, 'admin' => 'false']);
+        $user = (new BaseModel)->getByColumnValue("sellers", "username", $username);
+        $_SESSION['userid'] = $user['id'];
         $success = True;
     }
 }
 
+
 // Anmeldung
-
 $wrong = False;
-
 if (isset($_POST["login"])) {
-
     $username = $_POST['username'];
     $password = md5($_POST['password']);
 
-    $checkData = pg_query($dbConn, "SELECT * FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
+    if ((new BaseModel)->checkLogin($username, $password)) {
 
-    $login_check = pg_num_rows($checkData);
+        $user = (new BaseModel)->getByColumnValue("sellers", "username", $username);
 
-    if ($login_check > 0) {
-
-        $result = pg_query($dbConn, "SELECT id FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
-
-        $id = pg_fetch_assoc($result);
-
-        $result = pg_query($dbConn, "SELECT admin FROM public.sellers WHERE username LIKE '$username' AND userpassword LIKE '$password'");
-
-        $admin = pg_fetch_assoc($result);
-
-        if ($admin) {
+        if ($user['admin'] ) {
             $_SESSION['admin'] = True;
         }
 
-        $_SESSION['userid'] = $id['id'];
+        $_SESSION['userid'] = $user['id'];
         $_SESSION['loggedin'] = True;
         header('Location: home.php');
 
@@ -207,7 +159,6 @@ if (isset($_POST["login"])) {
         $wrong = True;
 
     }
-
 }
 
 ?>

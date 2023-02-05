@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('./includes/connect.php');
 if(!$_SESSION['admin']) {
     header('Location: home.php');
     exit;
@@ -8,9 +9,9 @@ if(!$_SESSION['admin']) {
 $userId = $_SESSION['userid'];
 
 if(isset($_GET['id'])) {
-    $id = $_GET['id'];
-    //TODO
-    //pg_fetch_assoc(pg_query($dbConn, "DELETE FROM public.sellers WHERE id = $id"));
+    if ($userId != $_GET['id']) {
+        (new BaseModel)->delete('sellers', $_GET['id']);
+    }
     header('Location: users.php');
     die();
 }

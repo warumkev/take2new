@@ -25,9 +25,9 @@ include('./includes/connect.php');
                 <p class="lead text-muted">Hier findest du alle Informationen, die wir über dich haben!</p>
             </div>
             <ul class="list-group mx-auto">
-                <li class="list-group-item">Deine ID ist <span class="text-danger"><?php echo $userNameId; ?></span>
+                <li class="list-group-item">Deine ID ist <span class="text-danger"><?php echo $_SESSION['userid']; ?></span>
                 </li>
-                <li class="list-group-item">Dein Nutzername lautet <span class="text-danger"><?php echo $name; ?></span>
+                <li class="list-group-item">Dein Nutzername lautet <span class="text-danger"><?php echo (new BaseModel)->getOne('sellers', $_SESSION['userid'])['username']; ?></span>
                 </li>
                 <a href="logout.php" class="list-group-item"><span class="text-danger"><b>Abmelden</b></span></a>
             </ul>
