@@ -30,4 +30,3 @@
 - https://www.php.net/manual/de/book.session.php
 - https://www.php.net/manual/de/ref.password.php
 - https://www.php.net/manual/de/function.header.php
-- https://picocss.com
