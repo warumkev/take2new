@@ -59,13 +59,13 @@ class BaseModel
         $stmt = $this->dbconn->prepare("UPDATE $table SET " . implode(",", array_map(fn($value) => "$value = :$value", $keys)) . " WHERE id = :id");
         foreach ($values as $key => $value) {
             if ($value == "false" || $value == "true") {
-                $stmt->bindParam(":$keys[$key]", $value, PDO::PARAM_BOOL);
+                $stmt->bindValue(":$keys[$key]", $value, PDO::PARAM_BOOL);
             } else if (is_int($value)) {
-                $stmt->bindParam(":$keys[$key]", $value, PDO::PARAM_INT);
+                $stmt->bindValue(":$keys[$key]", $value, PDO::PARAM_INT);
             } else if (is_null($value)) {
-                $stmt->bindParam(":$keys[$key]", $value, PDO::PARAM_NULL);
+                $stmt->bindValue(":$keys[$key]", $value, PDO::PARAM_NULL);
             } else {
-                $stmt->bindParam(":$keys[$key]", $value);
+                $stmt->bindValue(":$keys[$key]", $value);
             }
         }
         $stmt->bindParam(":id", $id);

@@ -40,7 +40,6 @@ if (!$_SESSION['admin']) {
                     <span class="badge bg-dark rounded-pill"><?php echo count((new BaseModel)->allWhere('items', 'sellerid', $_GET['id'])) ?></span>
                 </h4>
                 <ul class="list-group mb-3">
-
                     <?php foreach ((new BaseModel)->allWhere('items', 'sellerid', $_GET['id']) as $article) { ?>
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
@@ -60,22 +59,25 @@ if (!$_SESSION['admin']) {
                 <form class="needs-validation" novalidate="" method="post">
                     <div class="row g-3">
 
+                        <input type="hidden" name="oldid"
+                               value="<?php echo $userInfo['id']; ?>">
+
                         <div class="col-sm-6">
                             <label for="id" class="form-label">ID</label>
                             <input type="text" class="form-control" id="id" name="id" placeholder=""
-                                   value=<?php echo $userInfo['id']; ?> required="" control-id="ControlID-4">
+                                   value=<?php echo $userInfo['id']; ?> required="" control-id="ControlID-4" disabled>
                             <div class="invalid-feedback">
                                 Es muss eine gültige ID angegeben werden
                             </div>
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="role" class="form-label">Admin</label>
+                            <label for="admin" class="form-label">Admin</label>
                             <?php if ($userInfo['admin']) { ?>
-                                <input type="checkbox" class="form-check-input" id="role" name="role"
+                                <input type="checkbox" class="form-check-input" id="admin" name="admin"
                                        control-id="ControlID-5" checked>
                             <?php } else { ?>
-                                <input type="checkbox" class="form-check-input" id="role" name="role"
+                                <input type="checkbox" class="form-check-input" id="admin" name="admin"
                                        control-id="ControlID-5">
                             <?php } ?>
                         </div>
@@ -100,7 +102,6 @@ if (!$_SESSION['admin']) {
 
                         <hr class="my-4">
 
-                        // TODO
                         <button name="edit" type="post" class="btn btn-dark">Änderungen Abschicken</button>
                 </form>
             </div>

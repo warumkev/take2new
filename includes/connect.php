@@ -10,17 +10,53 @@ if (isset($_SESSION['loggedin'])) {
 }
 
 
-// Suchfunktion
-if (isset($_GET['search'])) {
-    $query = $_GET['search'];
-    $listArticles = (new BaseModel)->allWhere('items', 'itemname', $query);
+// Registrierung
+$invalid = False;
+$taken = False;
+$success = False;
+if (isset($_POST["register"])) {
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+
+    $usernameFree = (new BaseModel)->getByColumnValue("sellers", "username", $username);
+
+    if (!isset($username) || trim($username) == '' || !isset($password) || trim($password) == '') {
+        $invalid = True;
+    } else if ($usernameFree) {
+        $taken = True;
+    } else {
+        $_SESSION['loggedin'] = True;
+        (new BaseModel)->create("sellers", ['id' => uniqid(), 'username' => $username, 'userpassword' => $password, 'admin' => 'false']);
+        $user = (new BaseModel)->getByColumnValue("sellers", "username", $username);
+        $_SESSION['userid'] = $user['id'];
+        $success = True;
+    }
 }
 
 
-// Checkout
-if (isset($_GET['artid'])) {
-    $artid = $_GET['artid'];
-    $artInfo = (new BaseModel)->getOne('items', $artid);
+// Anmeldung
+$wrong = False;
+if (isset($_POST["login"])) {
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
+
+    if ((new BaseModel)->checkLogin($username, $password)) {
+
+        $user = (new BaseModel)->getByColumnValue("sellers", "username", $username);
+
+        if ($user['admin'] ) {
+            $_SESSION['admin'] = True;
+        }
+
+        $_SESSION['userid'] = $user['id'];
+        $_SESSION['loggedin'] = True;
+        header('Location: home.php');
+
+    } else {
+
+        $wrong = True;
+
+    }
 }
 
 
@@ -112,53 +148,45 @@ if (isset($_POST["sell"])) {
 }
 
 
-// Registrierung
-$invalid = False;
-$taken = False;
-$success = False;
-if (isset($_POST["register"])) {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
-
-    $usernameFree = (new BaseModel)->getByColumnValue("sellers", "username", $username);
-
-    if (!isset($username) || trim($username) == '' || !isset($password) || trim($password) == '') {
-        $invalid = True;
-    } else if ($usernameFree) {
-        $taken = True;
-    } else {
-        $_SESSION['loggedin'] = True;
-        (new BaseModel)->create("sellers", ['id' => uniqid(), 'username' => $username, 'userpassword' => $password, 'admin' => 'false']);
-        $user = (new BaseModel)->getByColumnValue("sellers", "username", $username);
-        $_SESSION['userid'] = $user['id'];
-        $success = True;
-    }
+// Suchfunktion
+if (isset($_GET['search'])) {
+    $query = $_GET['search'];
+    $listArticles = (new BaseModel)->allWhere('items', 'itemname', $query);
 }
 
 
-// Anmeldung
-$wrong = False;
-if (isset($_POST["login"])) {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
+// Checkout
+if (isset($_GET['artid'])) {
+    $artid = $_GET['artid'];
+    $artInfo = (new BaseModel)->getOne('items', $artid);
+}
 
-    if ((new BaseModel)->checkLogin($username, $password)) {
 
-        $user = (new BaseModel)->getByColumnValue("sellers", "username", $username);
+// Benutzer bearbeiten
+if (isset($_POST["edit"])) {
 
-        if ($user['admin'] ) {
-            $_SESSION['admin'] = True;
-        }
-
-        $_SESSION['userid'] = $user['id'];
-        $_SESSION['loggedin'] = True;
-        header('Location: home.php');
-
+    $oldid = $_POST['oldid'];
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $rawPassword = $_POST['password'];
+    if (strlen($rawPassword) == 32 && ctype_xdigit($rawPassword)) {
+        $password = $rawPassword;
     } else {
-
-        $wrong = True;
-
+        $password = md5($_POST['password']);
     }
+    if (isset($_POST['admin'])) {
+        $role = "true";
+    } else {
+        $role = "false";
+    }
+
+    (new BaseModel)->update('sellers', [
+        'id' => $id,
+        'username' => $name,
+        'userpassword' => $password,
+        'admin' => $role
+    ], $oldid);
+
 }
 
 ?>
