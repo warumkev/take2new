@@ -9,6 +9,15 @@ if (isset($_SESSION['loggedin'])) {
     $userPassword = $user['userpassword'];
 }
 
+// Suchfunktion
+
+
+if (isset($_GET['search'])) {
+
+    $query = $_GET['search'];
+    $listArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE itemname LIKE '%$query%' ORDER BY id");
+
+}
 
 // Registrierung
 $invalid = False;
