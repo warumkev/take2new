@@ -17,10 +17,10 @@
 
 ## Installation
 - Laden sie das Repository herunter und entpacken sie es in einen beliebigen Ordner.
-- Erstellen sie eine neue PostgreSQL Datenbank und führen den code aus der Datei `database.sql` aus.
-- Öffnen sie die Datei `DatabaseFactory.php` und ändern sie die Werte der Variablen `HOST`, `PORT`, `DBNAME`, `USER` und `PASSWORD` auf die Werte ihrer Datenbank.
+- Erstellen sie eine neue PostgreSQL Datenbank und führen sie in PgAdmin den code aus der Datei `database.sql` aus.
+- Öffnen sie die Datei `DatabaseFactory.php` und ändern sie die Werte der Variablen `HOST`, `PORT`, `DBNAME`, `USER` und `PASSWORD` auf die von ihnen festgelegten Werte ihrer Datenbank.
 - Kopieren sie den Inhalt des Ordners `app` in den Ordner `htdocs` ihres Apache-Servers.
-- Öffnen sie die Datei 'php.ini' und aktivieren die pdo extension.
+- Öffnen sie die Datei 'php.ini' in ihrem Php Verzeichnis und aktivieren sie die pdo extension.
 - Starten sie PHP neu.
 - Starten sie den Apache-Server.
 - Starten sie den PostgreSQL-Server.
@@ -30,3 +30,4 @@
 - https://www.php.net/manual/de/book.session.php
 - https://www.php.net/manual/de/ref.password.php
 - https://www.php.net/manual/de/function.header.php
+- https://getbootstrap.com/docs/5.3/getting-started/introduction/
