@@ -7,7 +7,7 @@ $host = "localhost"; //$_ENV['POSTGRES_HOST'];
 $port = "5432";
 $db = "take2new";
 $user = "postgres";
-$pw = ""; //"Start#123";
+$pw = "";
 $connStr = "host=$host port=$port dbname=$db user=$user password=$pw";
 
 $dbConn = pg_connect($connStr);
@@ -21,7 +21,7 @@ if (!$dbConn) {
 
 if (isset($_SESSION['loggedin'])) {
     $userNameId = $_SESSION['userid'];
-    $getUserName = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = $userNameId");
+    $getUserName = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id LIKE '$userNameId'");
     $currentUserName = pg_fetch_assoc($getUserName);
     $name = $currentUserName['username'];
     $userPassword = $currentUserName['userpassword'];
@@ -42,11 +42,11 @@ if (isset($_POST["sell"])) {
 
     $tmp = explode('.', $imageName);
     $imageExtension = strtolower(end($tmp));
-    $uploadPath = $currentDirectory . $uploadDirectory . basename($fileName);
+    $uploadPath = $currentDirectory . $uploadDirectory . basename($imageName);
 
 
 
-    if (!in_array($imageExtension, $imageExtensionsAllowed)) {
+    if (!in_array($imageExtension, $fileExtensionsAllowed)) {
         $errors[] = "Ungültiges Dateiformat! Bitte lade eine PNG oder JPG hoch.";
     }
 
