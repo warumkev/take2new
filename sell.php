@@ -4,14 +4,6 @@ include './includes/config.php';
 
 // Datenbankverbindung aufbauen
 $connStr = "host=$HOST port=$PORT dbname=$DB user=$USER password=$PASSWORD";
-
-$host = "localhost"; //$_ENV['POSTGRES_HOST'];
-$port = "5432";
-$db = "take2new";
-$user = "postgres";
-$pw = "";
-$connStr = "host=$host port=$port dbname=$db user=$user password=$pw";
-
 $dbConn = pg_connect($connStr);
 
 if (!$dbConn) {
