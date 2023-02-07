@@ -1,6 +1,34 @@
 <?php
 session_start();
-include('./includes/connect.php');
+
+// Datenbankverbindung aufbauen
+
+$host = "localhost"; //$_ENV['POSTGRES_HOST'];
+$port = "5432";
+$db = "take2new";
+$user = "postgres";
+$pw = ""; //"Start#123";
+$connStr = "host=$host port=$port dbname=$db user=$user password=$pw";
+
+$dbConn = pg_connect($connStr);
+
+if (!$dbConn) {
+    echo "Ein Fehler ist aufgetreten.\n";
+    exit;
+}
+
+// Artikel abrufen
+
+$listArticles = pg_query($dbConn, "SELECT * FROM public.items ORDER BY id");
+
+$listUsers = pg_query($dbConn, "SELECT * FROM public.sellers ORDER BY id");
+
+// Anzahl an Artikeln
+
+$alleArtikelQuery = pg_query($dbConn, "SELECT * FROM public.items");
+
+$alleArtikel = pg_num_rows($alleArtikelQuery);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -18,20 +46,21 @@ include('./includes/connect.php');
 
   <?php include('./components/navbar.php'); ?>
 
+
   <main>
 
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="60px" width="185" style="margin-top: -80px;"><br>
-          <h1 class="fw-light" style="margin-top:110px;">Unser Sortiment</h1>
+          <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
+          <h1 class="fw-light">Unser Sortiment</h1>
           <p class="lead text-muted">Unten sind alle aktuell gelisteten Artikel in unserem Sortiment. Schau dich doch
             gerne mal ein wenig um, vielleicht findet das ein oder andere Piece ja den Weg in deinen Schrank!</p>
           <p>
             <button type="button" class="btn btn-dark position-relative">
               Aktuelles Sortiment
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                <?php echo count((new BaseModel)->getAll('items')); ?>
+                <?php echo $alleArtikel; ?>
               </span>
             </button>
           </p>
@@ -43,15 +72,20 @@ include('./includes/connect.php');
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-          <?php foreach (((new BaseModel)->getAll('items')) as $row) {
-            $name = $row['itemname'];
-            $id = $row['id'];
-            $description = $row['itemdescription'];
-            $price = $row['itemprice'];
-            $size = $row['itemsize'];
-            $seller = (new BaseModel)->getOne('sellers', $row['sellerid'])['username'];
-            $img = $row['picturename'];
-            $qty = $row['qty'];
+          <?php while ($row = pg_fetch_assoc($listArticles)) {
+
+          $name = $row['itemname'];
+          $id = $row['id'];
+          $description = $row['itemdescription'];
+          $price = $row['itemprice'];
+          $size = $row['itemsize'];
+          $sellerid = $row['sellerid'];
+          $getSeller = pg_query($dbConn, "SELECT * FROM public.sellers WHERE id = '$sellerid'");
+          $itemSeller = pg_fetch_assoc($getSeller);
+          $seller = $itemSeller['username'];
+          $img = $row['picturename'];
+          $qty = $row['qty'];
+
         ?>
           <div class="col">
             <div class="card shadow-sm">
@@ -88,6 +122,7 @@ include('./includes/connect.php');
   </main>
 
   <?php include('./components/footer.php'); ?>
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
