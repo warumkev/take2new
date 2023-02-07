@@ -20,19 +20,18 @@ include('./includes/connect.php');
   <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
-                    <h1 class="fw-light">take<span class="text-danger">2</span>new</h1>
+                    <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" width="430px" height="190px" style="margin-top: -50px; text-align: center;"><br>
                     <p class="lead text-muted">Wir freuen uns, dass du den Weg zu uns gefunden hast.</p>
                 </div>
             </div>
         </section>
   <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom">Warum take<span class="text-danger">2</span>new nutzen?</h2>
+    <h2 class="pb-2 border-bottom">Warum <img src="./assets/brand/take2new-1.png" height="30px" style="margin-top: -10px;">  nutzen?</h2>
 
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
       <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold">Wir sind die Spezialisten im Bereich der Secondhand Branche.</h3>
-        <p class="text-muted">Im Gegensatz zur Konkurenz setzen wir alles auf Nachhaltigkeit. Unser hauseigener
+        <h3 class="fw-bold">Wir sind die Spezialisten im Bereich der Second Hand Branche.</h3>
+        <p class="text-muted">Im Gegensatz zur Konkurrenz setzen wir alles auf Nachhaltigkeit. Unser hauseigener
           Lieferdienst wickelt Lieferungen schnell & problemlos ab und liefert im besten Fall schon am nächsten Tag zu
           dir nach Hause.</p>
         <a href="about.php" class="btn btn-dark btn-lg">Über uns</a>
@@ -57,7 +56,7 @@ include('./includes/connect.php');
             </svg>
           </div>
           <h4 class="fw-semibold mb-0"><span class="text-dark">Günstige Preise</span></h4>
-          <p class="text-muted">Dank unserer Experten im Einkauf können wir die günstigsten Preise auf dem Markt bieten
+          <p class="text-muted">Dank unserer Experten im Einkauf können wir die günstigsten Preise auf dem Markt bieten.
           </p>
         </div>
 
@@ -70,7 +69,7 @@ include('./includes/connect.php');
           </div>
           <h4 class="fw-semibold mb-0"><span class="text-dark">Unser Beitrag</span></h4>
           <p class="text-muted">Wir legen großen Wert auf die Umwelt. Daher pflanzen wir bei jedem Verkauf eines
-            Artikels einen Baum, um dem Klimawandel entgegenzuwirken.</p>
+            Artikels einen Baum, um dem Klimawandel entgegen zu wirken.</p>
         </div>
 
         <div class="d-flex flex-column gap-2">
@@ -81,8 +80,7 @@ include('./includes/connect.php');
             </svg>
           </div>
           <h4 class="fw-semibold mb-0"><span class="text-warning">Probleme?</span></h4>
-          <p class="text-muted">Bei Problemen mit <span class="text-dark">take</span><span
-              class="text-danger">2</span><span class="text-dark">new</span>, bitte melde dich bei unserem Support. Wir
+          <p class="text-muted">Bei Problemen mit <img src="./assets/brand/take2new-1.png" height="15px" style="margin-top: -10px;"> , melde dich bitte bei unserem Support. Wir
             kommen schnellstmöglich darauf zurück.</p>
         </div>
       </div>
