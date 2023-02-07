@@ -38,7 +38,7 @@ include('./includes/connect.php');
         <form method="post">
             <div class="form-group" style="margin-top: -70px;">
                 <label>Nutzername</label>
-                <input type="text" class="form-control" placeholder="Nutzername" aria-label="Nutzername" name="Nutzername" >
+                <input type="text" class="form-control" placeholder="Nutzername" aria-label="Nutzername" name="username" >
                 <small class="form-text text-muted">Wir werden niemals deine Login Daten weitergeben.</small>
             </div>
             <div class="form-group" style="margin-top: 8px;">
