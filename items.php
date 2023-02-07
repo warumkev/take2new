@@ -3,7 +3,7 @@ session_start();
 include './includes/config.php';
 
 // Datenbankverbindung aufbauen
-$connStr = "host=$HOST port=$PORT dbname=$DB user=$USER password=$PASSWORD";
+$connStr = "host=". HOST . " port=" . PORT . " dbname=" . DBNAME . " user=" . USER . " password=" . PASSWORD;
 $dbConn = pg_connect($connStr);
 
 if (!$dbConn) {
