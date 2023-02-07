@@ -20,7 +20,7 @@ include('./includes/connect.php');
   <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" width="430px" height="190px" style="margin-top: -50px; text-align: center;"><br>
+                    <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" width="490px" height="190px" style="margin-top: -50px; text-align: center;"><br>
                     <p class="lead text-muted">Wir freuen uns, dass du den Weg zu uns gefunden hast.</p>
                 </div>
             </div>
