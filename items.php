@@ -1,7 +1,9 @@
 <?php
 session_start();
+include './includes/config.php';
 
 // Datenbankverbindung aufbauen
+$connStr = "host=$HOST port=$PORT dbname=$DB user=$USER password=$PASSWORD";
 
 $host = "localhost";
 $port = "5432";

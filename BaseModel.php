@@ -17,7 +17,7 @@ class BaseModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getOne(string $table, string $id): array
+    public function getOne(string $table, string $id): array|bool
     {
         $stmt = $this->dbconn->prepare("SELECT * FROM $table WHERE id = :id");
         $stmt->bindParam(":id", $id);
