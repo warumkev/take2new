@@ -11,7 +11,7 @@ class DatabaseFactory
         $PORT = 5432;
         $DBNAME = $_ENV['POSTGRES_DB']; // "take2new";
         $USER = $_ENV['POSTGRES_USER']; // "postgres";
-        $PASSWORD = $_ENV['POSTGRES_PASSWORD']; // "IchbinKevin03.";
+        $PASSWORD = $_ENV['POSTGRES_PASSWORD']; // "Passwort";
 
         if (self::$dbconn === null) {
             self::$dbconn = new PDO('pgsql:host=' . $HOST . ';port=' . $PORT . ';dbname=' . $DBNAME, $USER, $PASSWORD);
