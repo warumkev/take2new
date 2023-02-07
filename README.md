@@ -18,7 +18,7 @@
 ## Installation
 - Laden sie das Repository herunter und entpacken sie es in einen beliebigen Ordner.
 - Erstellen sie eine neue PostgreSQL Datenbank und führen sie in PgAdmin den code aus der Datei `database.sql` aus.
-- Öffnen sie die Datei `DatabaseFactory.php` und ändern sie die Werte der Variablen `HOST`, `PORT`, `DBNAME`, `USER` und `PASSWORD` auf die von ihnen festgelegten Werte ihrer Datenbank.
+- Öffnen sie die Datei `config.php` und ändern sie die Werte der Variablen `HOST`, `PORT`, `DBNAME`, `USER` und `PASSWORD` auf die von ihnen festgelegten Werte ihrer Datenbank.
 - Kopieren sie den Inhalt des Quellcode Ordners in den Ordner `htdocs` ihres Apache-Servers.
 - Öffnen sie die Datei 'php.ini' in ihrem Php Verzeichnis und aktivieren sie die PDO extension.
 - Starten sie PHP neu.
