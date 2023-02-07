@@ -36,9 +36,7 @@
           <a class="nav-link active" href="sell.php">Verkaufen</a>
         </li>
         <?php } ?>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
+        
       </ul>
       <?php 
 
