@@ -62,7 +62,9 @@ if (isset($_POST["sell"])) {
 
         $articleExists = pg_query($dbConn, "SELECT itemname FROM public.sellers WHERE itemname LIKE '$name'");
 
-        pg_query($dbConn, "INSERT INTO public.items(id, itemname, itemdescription, itemviews, itemprice, sellerid, itemsize, picturename) VALUES (DEFAULT, '$name', '$description', DEFAULT, $price, $sellerid, '$size', '$imageName')");
+        $itemid = uniqid();
+
+        pg_query($dbConn, "INSERT INTO public.items(id, itemname, itemdescription, itemviews, itemprice, sellerid, itemsize, picturename) VALUES ('$itemid', '$name', '$description', 0, $price, $sellerid, '$size', '$imageName')");
 
         header('Location: items.php');
 
