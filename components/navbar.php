@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light" aria-label="Third navbar example">
   <div class="container-fluid">
     <a class="navbar-brand" href="">
-      <img src="assets/brand/take2new.svg" alt="Bootstrap" width="30" height="24">
+      <img src="assets/brand/take2new-logos_black.png" alt="Bootstrap" width="150" height="58">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03"
       aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
