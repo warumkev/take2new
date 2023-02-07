@@ -22,9 +22,9 @@ include('./includes/connect.php');
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
-                    <h1 class="fw-light">Registrierung</h1>
-                    <p class="lead text-muted"><a class="link-dark" href="login.php"">Hier</a> kannst du dich anmelden.</p>
+                    <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="190px" width="430px" style="margin-top: -50px; text-align: center;"><br>
+                    <h1 class="fw-light" style="margin-top: 56px;">Registrierung</h1>
+                    <p class="lead text-muted"><a class="link-dark" href="login.php">Hier</a> kannst du dich anmelden.</p>
 
                 </div>
             </div>
@@ -43,13 +43,17 @@ include('./includes/connect.php');
             <?php } ?>
         </section>
         <form method="post">
-            <div class="input-group mb-3">
+            <div class="form-group" style="margin-top: -70px;">
+                <label>Nutzername</label>
                 <input type="text" class="form-control" placeholder="Nutzername" aria-label="Nutzername" name="username"
                     id="username">
-                <span class="input-group-text">-</span>
+                <small class="form-text text-muted">Gib niemals deine Login Daten weiter!</small>
+            </div>
+               <div class="form-group" style="margin-top: 8px;">
+                <label for="exampleInputPassword1">Passwort</label> 
                 <input type="password" class="form-control" placeholder="Passwort" aria-label="Passwort" name="password"
                     id="password">
-                <button name="register" type="post" class="btn btn-dark">Registrieren</button>
+                <button style="margin-top: 9px;" name="register" type="post" class="btn btn-primary">Registrieren</button>
             </div>
         </form>
 
