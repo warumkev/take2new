@@ -23,8 +23,8 @@ include('./includes/connect.php');
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
-          <h1 class="fw-light">Unser Sortiment</h1>
+          <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="60px" width="185" style="margin-top: -80px;"><br>
+          <h1 class="fw-light" style="margin-top:110px;">Unser Sortiment</h1>
           <p class="lead text-muted">Unten sind alle aktuell gelisteten Artikel in unserem Sortiment. Schau dich doch
             gerne mal ein wenig um, vielleicht findet das ein oder andere Piece ja den Weg in deinen Schrank!</p>
           <p>
