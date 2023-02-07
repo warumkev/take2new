@@ -3,11 +3,11 @@ session_start();
 
 // Datenbankverbindung aufbauen
 
-$host = "localhost"; //$_ENV['POSTGRES_HOST'];
+$host = "localhost";
 $port = "5432";
 $db = "take2new";
 $user = "postgres";
-$pw = ""; //"Start#123";
+$pw = "";
 $connStr = "host=$host port=$port dbname=$db user=$user password=$pw";
 
 $dbConn = pg_connect($connStr);
