@@ -22,14 +22,14 @@ include('./includes/connect.php');
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
-                    <h1 class="fw-light">Artikel verkaufen</h1>
+                <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="60px" width="185" style="margin-top: -80px;"><br>
+                    <h1 class="fw-light" style="margin-top: 70px;">Artikel verkaufen</h1>
                     <p class="lead text-muted">Wir freuen uns, dass du den Weg zu uns gefunden hast. Hier kannst du die
-                        Informationen zu dienen Piece angeben und die Anzeige online stellen.</p>
+                        Informationen zu deinem Piece angeben und die Anzeige online stellen.</p>
                 </div>
             </div>
         </section>
-        <form method="post"  enctype="multipart/form-data">
+        <form method="post"  enctype="multipart/form-data" style="margin-top: -80px;">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Artikel</span>
                 <input type="text" class="form-control" placeholder="Artikelname" aria-label="Artikelname"
