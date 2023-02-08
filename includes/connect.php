@@ -85,6 +85,7 @@ if (isset($_POST["order"])) {
         'itemid' => $art,
         'price' => $artPrice
     ]);
+    header('Location: home.php');
 }
 
 
