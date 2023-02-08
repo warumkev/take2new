@@ -28,7 +28,7 @@ if(!$_SESSION['admin']) {
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
+                <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="100px"><br>
                 <h1 class="fw-light">Benutzerverwaltung</h1>
                 <p class="lead text-muted">Hier kannst du die Benutzer verwalten</p>
             </div>

@@ -54,14 +54,11 @@ if (isset($_POST["sell"])) {
         $description = nl2br($description);
         $description = stripslashes($description);
 
-        $articleExists = pg_query($dbConn, "SELECT itemname FROM public.sellers WHERE itemname LIKE '$name'");
-
         $itemid = uniqid();
 
         pg_query($dbConn, "INSERT INTO public.items(id, itemname, itemdescription, itemviews, itemprice, sellerid, itemsize, picturename) VALUES ('$itemid', '$name', '$description', 0, $price, $sellerid, '$size', '$imageName')");
 
         header('Location: items.php');
-
 
         if ($didUpload) {
             $uploadSuccess = True;
