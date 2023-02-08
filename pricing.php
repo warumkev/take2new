@@ -108,7 +108,7 @@ include('./includes/connect.php');
               <li>Zeige deinen Artikel an der Spitze (10x/mo.)</li>
             </ul>
             <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
-            <a href="mailto:mail@iu-study.org" type="button" class="w-100 btn btn-lg btn-success">Kontaktiere uns</a>
+            <a href="mailto:take2new@iu-study.org" type="button" class="w-100 btn btn-lg btn-success">Kontaktiere uns</a>
           </div>
         </div>
       </div>
