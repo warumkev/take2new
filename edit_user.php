@@ -25,7 +25,7 @@ if (!$_SESSION['admin']) {
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
+            <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="100px"><br>
             <h1 class="fw-light">take<span class="text-danger">2</span>new - Benutzer Bearbeiten</h1>
             <p class="lead text-muted">Hier kann man Benutzer bearbeiten</p>
         </div>
@@ -50,15 +50,15 @@ if (!$_SESSION['admin']) {
                 </ul>
             </div>
 
-            <?php
-                $userInfo = (new BaseModel)->getOne('sellers', $_GET['id']);
-            ?>
+            <?php $userInfo = (new BaseModel)->getOne('sellers', $_GET['id']); ?>
 
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Details</h4>
                 <form class="needs-validation" novalidate="" method="post">
                     <div class="row g-3">
 
+                        <input type="hidden" name="id"
+                               value="<?php echo $userInfo['id']; ?>">
                         <input type="hidden" name="oldid"
                                value="<?php echo $userInfo['id']; ?>">
 
