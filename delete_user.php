@@ -6,10 +6,8 @@ if(!$_SESSION['admin']) {
     exit;
 }
 
-$userId = $_SESSION['userid'];
-
 if(isset($_GET['id'])) {
-    if ($userId != $_GET['id']) {
+    if ($_SESSION['userid'] != $_GET['id']) {
         (new BaseModel)->delete('sellers', $_GET['id']);
     }
     header('Location: users.php');
