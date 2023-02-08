@@ -21,13 +21,13 @@ include('./includes/connect.php');
   <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="100px"><br>
-                    <h1 class="fw-light">Unsere Pläne</h1>
+                    <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="70px" width="180px" style="margin-top: -80px;>
+                    <h1 class="fw-light" style="margin-top: 75px;">Unsere Pläne</h1>
                     <p class="lead text-muted">Du interessierst dich für eine Partnerschaft mit uns? Dann schau dir unsere Nutzerorientierten Pläne an und lege direkt los!</p>
                 </div>
             </div>
         </section>
-  <main>
+  <main style="margin-top: -45px;">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
