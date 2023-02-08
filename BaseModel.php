@@ -79,18 +79,6 @@ class BaseModel
         return $stmt->execute();
     }
 
-    public function where($table, string $column, string $value): array
-    {
-        $stmt = $this->dbconn->prepare("SELECT * FROM $table WHERE $column = :value");
-        $stmt->bindParam(":value", $value);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (!$result) {
-            return array();
-        }
-        return $result;
-    }
-
     public function allWhere($table, string $column, string $value): array
     {
         $stmt = $this->dbconn->prepare("SELECT * FROM $table WHERE $column = :value");

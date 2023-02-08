@@ -155,7 +155,6 @@ if (isset($_POST["sell"])) {
 
 // Benutzer bearbeiten
 if (isset($_POST["edit"])) {
-
     $oldid = $_POST['oldid'];
     $id = $_POST['id'];
     $name = $_POST['name'];
@@ -177,7 +176,6 @@ if (isset($_POST["edit"])) {
         'userpassword' => $password,
         'admin' => $role
     ], $oldid);
-
 }
 
 ?>
