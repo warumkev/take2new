@@ -80,51 +80,74 @@ if (isset($_POST["sell"])) {
     <title>take2new | Artikel verkaufen</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
     <link rel="stylesheet" href="./assets/dist/css/bootstrap.min.css">
+    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
     <link rel="stylesheet" href="./assets/dist/css/bootstrap.css">
 </head>
 
 <body>
 
     <?php include('./components/navbar.php'); ?>
+    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
     <div class="container-sm">
-
+<!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
         <section class="py-5 text-center container">
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <div class="row py-lg-5">
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <div class="col-lg-6 col-md-8 mx-auto">
+                    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                     <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="100px"><br>
+                    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                     <h1 class="fw-light">Artikel verkaufen</h1>
+                    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                     <p class="lead text-muted">Wir freuen uns, dass du den Weg zu uns gefunden hast. Hier kannst du die
                         Informationen zu dienen Piece angeben und die Anzeige online stellen.</p>
                 </div>
             </div>
         </section>
         <form method="post"  enctype="multipart/form-data">
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <div class="input-group mb-3">
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <span class="input-group-text" id="basic-addon1">Artikel</span>
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <input type="text" class="form-control" placeholder="Artikelname" aria-label="Artikelname"
                     aria-describedby="basic-addon1" name="name" id="name">
             </div>
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <div class="input-group mb-3">
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <span class="input-group-text">€</span>
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <input type="text" class="form-control" aria-label="Preis" name="price" id="price">
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <span class="input-group-text">.00</span>
             </div>
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <div class="input-group mb-3">
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <span class="input-group-text" id="basic-addon1">Größe</span>
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <input type="text" class="form-control" placeholder="XXS, XS, S, M, L, XL, XXL ---- 39, 40, 41 ---- 30/32, 40/42, 30/30" aria-label="Size"
                     aria-describedby="basic-addon1" name="size" id="size">
             </div>
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <div class="input-group mb-3">
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <span class="input-group-text">Beschreibung</span>
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <textarea class="form-control" aria-label="With textarea" name="description"
                     id="description"></textarea>
             </div>
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <div class="input-group mb-3">
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <input type="file" class="form-control" name="pictureName" id="fileToUpload">
             </div>
             <br>
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <button name="sell" type="post" class="btn btn-dark">Artikel einstellen</button>
         </form>
     </div>

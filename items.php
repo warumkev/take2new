@@ -31,8 +31,9 @@ $alleArtikel = pg_num_rows($alleArtikelQuery);
   <title>take2new | Sortiment</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
   <link rel="stylesheet" href="./assets/dist/css/bootstrap.min.css">
+  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
   <link rel="stylesheet" href="./assets/dist/css/bootstrap.css">
 </head>
 
@@ -42,17 +43,24 @@ $alleArtikel = pg_num_rows($alleArtikelQuery);
 
 
   <main>
-
+<!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
     <section class="py-5 text-center container">
+      <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
       <div class="row py-lg-5">
+        <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
         <div class="col-lg-6 col-md-8 mx-auto">
+          <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
           <img src="./assets/brand/take2new-logos_black.png" class="rounded mx-auto d-block" height="100px"><br>
+          <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
           <h1 class="fw-light">Unser Sortiment</h1>
+          <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
           <p class="lead text-muted">Unten sind alle aktuell gelisteten Artikel in unserem Sortiment. Schau dich doch
             gerne mal ein wenig um, vielleicht findet das ein oder andere Piece ja den Weg in deinen Schrank!</p>
           <p>
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <button type="button" class="btn btn-dark position-relative">
               Aktuelles Sortiment
+              <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 <?php echo $alleArtikel; ?>
               </span>
@@ -61,9 +69,11 @@ $alleArtikel = pg_num_rows($alleArtikelQuery);
         </div>
       </div>
     </section>
-
+<!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
     <div class="album py-5 bg-light">
+      <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
       <div class="container">
+        <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
           <?php while ($row = pg_fetch_assoc($listArticles)) {
@@ -81,29 +91,40 @@ $alleArtikel = pg_num_rows($alleArtikelQuery);
           $qty = $row['qty'];
 
         ?>
+        <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
           <div class="col">
+            <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <div class="card shadow-sm">
+              <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
               <img src="./itemimg/<?php echo $img; ?>" alt="./itemimg/<?php echo $img; ?>" class="bd-placeholder-img card-img-top" style="object-fit: cover;" width="100%" height="225" role="img"
                  preserveAspectRatio="xMidYMid slice" focusable="false">
                 <title>
                   <?php echo $name; ?>
                 </title>
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
                  <br>&nbsp&nbsp&nbsp <span class="text-dark"><b><?php echo $name; ?></b></span>
                 </text>
               </svg>
-
+<!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
               <div class="card-body">
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <p class="card-text">
                   <?php echo $name . " | " . "Größe " . $size . " | " . $price . " €" . " | " . $seller; ?>
                 </p>
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <p class="card-text">
                   <?php echo $description; ?>
                 </p>
+                <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <div class="d-flex justify-content-between align-items-center">
+                  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                   <div class="btn-group">
+                    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                     <a href="buy.php?artid=<?php echo $id; ?>" class="btn btn-sm btn-outline-secondary">Kaufen</a>
+                    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                   </div>
+                  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                   <small class="text-muted"><?php echo $qty; ?> verfügbar</small>
                 </div>
               </div>

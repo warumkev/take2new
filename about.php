@@ -9,21 +9,28 @@ include('./includes/connect.php');
   <title>take2new | Über uns</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
   <link rel="stylesheet" href="./assets/dist/css/bootstrap.min.css">
+  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
   <link rel="stylesheet" href="./assets/dist/css/bootstrap.css">
 </head>
 
 <body>
 
   <?php include('./components/navbar.php'); ?>
+  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
 <div class="container">
-
+  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
   <section class="py-5 text-center container">
+    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
             <div class="row py-lg-5">
+              <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                 <div class="col-lg-6 col-md-8 mx-auto">
+                  <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                     <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
+                    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                     <h1 class="fw-light">Über uns</h1>
+                    <!-- Bezugnahme auf Design-Elemente von [Bootstrap 5.2.3]. -->
                     <p class="lead text-muted">Wir freuen uns, dass du den Weg zu uns gefunden hast. Hier kannst du die
                         Informationen zu dienen Piece angeben und die Anzeige online stellen.</p>
                 </div>
