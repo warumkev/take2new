@@ -20,8 +20,8 @@ include('./includes/connect.php');
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
-                <h1 class="fw-light">Mein Profil</h1>
+                <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="120px" width="390" style="margin-top: -30px;"><br>
+                <h1 class="fw-light" style="margin-top: 30px;">Mein Profil</h1>
                 <p class="lead text-muted">Hier findest du alle Informationen, die wir über dich haben!</p>
             </div>
             <ul class="list-group mx-auto">
