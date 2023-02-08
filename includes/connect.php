@@ -9,16 +9,6 @@ if (isset($_SESSION['loggedin'])) {
     $userPassword = $user['userpassword'];
 }
 
-// Suchfunktion
-
-
-if (isset($_GET['search'])) {
-
-    $query = $_GET['search'];
-    $listArticles = pg_query($dbConn, "SELECT * FROM public.items WHERE itemname LIKE '%$query%' ORDER BY id");
-
-}
-
 // Registrierung
 $invalid = False;
 $taken = False;
@@ -68,6 +58,11 @@ if (isset($_POST["login"])) {
     }
 }
 
+// Checkout
+if (isset($_GET['artid'])) {
+    $artid = $_GET['artid'];
+    $artInfo = (new BaseModel)->getOne('items', $artid);
+}
 
 // Bestellung aufgeben
 if (isset($_POST["order"])) {
@@ -154,20 +149,6 @@ if (isset($_POST["sell"])) {
             echo $error . " These are the errors" . "\n";
         }
     }
-}
-
-
-// Suchfunktion
-if (isset($_GET['search'])) {
-    $query = $_GET['search'];
-    $listArticles = (new BaseModel)->allWhere('items', 'itemname', $query);
-}
-
-
-// Checkout
-if (isset($_GET['artid'])) {
-    $artid = $_GET['artid'];
-    $artInfo = (new BaseModel)->getOne('items', $artid);
 }
 
 

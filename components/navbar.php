@@ -36,23 +36,7 @@
           <a class="nav-link active" href="sell.php">Verkaufen</a>
         </li>
         <?php } ?>
-        
       </ul>
-      <?php 
-
-      if (isset($_GET['searchBtn'])) {
-
-        $keyWord = $_GET['search'];
-      
-        header("Location: ./home.php?keyword=" . $keyWord);
-      
-      }
-
-      ?>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2 btn btn-outline-dark" type="search" placeholder="Artikel durchstöbern" name="search" aria-label="Search">
-        <input class="btn btn-outline-warning" type="submit" value="Suchen">
-      </form>
     </div>
   </div>
 </nav>
