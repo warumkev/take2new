@@ -20,8 +20,8 @@ include('./includes/connect.php');
   <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" height="100px"><br>
-                    <h1 class="fw-light">take<span class="text-danger">2</span>new - Checkout</h1>
+                    <img src="./assets/brand/take2new.svg" class="rounded mx-auto d-block" width="490px" height="180px" style="margin-top: -50px;"><br>
+                    <h1 class="fw-light">Checkout</h1>
                     <p class="lead text-muted">Gib deine Daten ein und der Artikel wandert in deinen Schrank.</p>
                 </div>
             </div>
