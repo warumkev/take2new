@@ -1,11 +1,5 @@
 # take2new
 
-## Gruppe 5
-- Giani, Elvis-Elijah
-- Spadin, Lara
-- Sommer, Mika
-- Dahmen, Silas
-
 ## Aufgabenstellung
 - Programmieren sie mittels PHP eine benutzerfreundliche Web-Anwendung zur Verwaltung von Artikeln.
 
